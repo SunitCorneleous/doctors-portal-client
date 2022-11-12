@@ -3,6 +3,6 @@
 ## Used Technologies:
 
 - React JS
-- React Router (For routing)
+- React Router (For Routing)
 - Tailwind (For Styling)
 - Daisy UI (For Styling)
