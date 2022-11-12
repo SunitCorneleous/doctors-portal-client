@@ -1,9 +1,9 @@
-.banner::before {
+.hero::before {
   background-image: url(../../../assets/images/bg.png);
   content: "";
   background-size: cover;
   position: absolute;
-  top: 0px;
+  top: 70px;
   right: 0px;
   bottom: 0px;
   left: 0px;
