@@ -1,9 +1,10 @@
 import React from "react";
 import treatment from "../../../assets/images/treatment.png";
+import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
 
 const DentalCare = () => {
   return (
-    <div className="md:w-4/5 mx-auto mb-28">
+    <section className="md:w-4/5 mx-auto mb-28">
       <div className="hero">
         <div className="hero-content flex-col lg:flex-row">
           <img
@@ -23,13 +24,11 @@ const DentalCare = () => {
               here', making it look like readable English. Many desktop
               publishing packages and web page
             </p>
-            <button className="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white">
-              Get Started
-            </button>
+            <PrimaryButton>get started</PrimaryButton>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
