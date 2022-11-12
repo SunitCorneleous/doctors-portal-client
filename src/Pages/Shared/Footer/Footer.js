@@ -11,8 +11,8 @@ const Footer = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="flex flex-col md:flex-row items-left justify-between md:justify-around">
-        <div className="ml-8 p-5">
+      <div className="flex flex-col md:flex-row items-left justify-between ">
+        <div className="ml-8 md:ml-0 p-5">
           <h3 className="font-bold text-base mb-4 text-slate-500">SERVICES</h3>
           <Link to="/" className="block">
             Emergency Checkup
@@ -27,7 +27,7 @@ const Footer = () => {
             Deep Checkup
           </Link>
         </div>
-        <div className="ml-8 p-5">
+        <div className="ml-8 md:ml-0 p-5">
           <h3 className="font-bold text-base mb-4 text-slate-500">
             ORAL HEALTH
           </h3>
@@ -41,7 +41,7 @@ const Footer = () => {
             Teath Whitening
           </Link>
         </div>
-        <div className="ml-8 p-5">
+        <div className="ml-8 md:ml-0 p-5">
           <h3 className="font-bold text-base mb-4 text-slate-500">
             OUR ADDRESS
           </h3>

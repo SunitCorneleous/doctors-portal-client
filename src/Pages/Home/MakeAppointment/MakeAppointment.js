@@ -6,7 +6,7 @@ import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
 const MakeAppointment = () => {
   return (
     <section
-      className="mx-auto mb-28 mt-52 px-10 pt-10"
+      className="mx-auto mb-28 mt-52 px-10 pt-10 pb-10 md:pb-0"
       style={{ backgroundImage: `url(${appointment})` }}
     >
       <div className="hero">
