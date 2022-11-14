@@ -1,7 +1,30 @@
+import { format } from "date-fns";
 import React from "react";
 
-const BookingModal = ({ treatment }) => {
+const BookingModal = ({ treatment, selectedDate }) => {
   const { name, slots } = treatment;
+
+  const handleBooking = event => {
+    event.preventDefault();
+
+    const form = event.target;
+    const date = form.selectedDate.value;
+    const slot = form.slot.value;
+    const name = form.name.value;
+    const phoneNumber = form.phoneNumber.value;
+    const email = form.email.value;
+
+    const bookingObj = {
+      date,
+      slot,
+      name,
+      phoneNumber,
+      email,
+    };
+
+    console.log(bookingObj);
+  };
+
   return (
     <>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
@@ -14,37 +37,51 @@ const BookingModal = ({ treatment }) => {
             ✕
           </label>
           <h3 className="text-lg font-bold">{name}</h3>
+
           {/* body */}
-          <form className="grid grid-cols-1 gap-3 mt-10">
+          <form
+            onSubmit={handleBooking}
+            className="grid grid-cols-1 gap-3 mt-10"
+          >
             <input
               type="text"
+              name="selectedDate"
               placeholder="Type here"
+              className="input input-bordered w-full"
+              value={format(selectedDate, "PP")}
+              disabled
+            />
+            {/* selecte options */}
+            <select name="slot" className="select select-bordered w-full">
+              {slots.map(slot => (
+                <option value={slot} key={slots.indexOf(slot)}>
+                  {slot}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
               className="input input-bordered w-full"
             />
             <input
               type="text"
-              placeholder="Type here"
+              name="phoneNumber"
+              placeholder="Phone Number"
               className="input input-bordered w-full"
             />
             <input
               type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full"
-            />
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full"
-            />
-            <input
-              type="text"
-              placeholder="Type here"
+              name="email"
+              placeholder="Email"
               className="input input-bordered w-full"
             />
             <br />
+            {/* submit button */}
             <input
               className="uppercase btn btn-accent"
-              type="button"
+              type="submit"
               value="submit"
             />
           </form>
