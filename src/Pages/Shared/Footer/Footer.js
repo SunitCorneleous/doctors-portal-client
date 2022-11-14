@@ -5,7 +5,7 @@ import footerBg from "../../../assets/images/footer.png";
 const Footer = () => {
   return (
     <footer
-      className="pt-2 h-[350px] flex flex-col justify-center"
+      className="mt-5 md:pt-2 md:h-[350px] flex flex-col justify-center"
       style={{
         backgroundImage: `url(${footerBg})`,
         backgroundSize: "cover",
