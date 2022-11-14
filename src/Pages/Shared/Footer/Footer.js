@@ -5,7 +5,7 @@ import footerBg from "../../../assets/images/footer.png";
 const Footer = () => {
   return (
     <footer
-      className="pt-2 h-[350px]"
+      className="pt-2 h-[350px] flex flex-col justify-center"
       style={{
         backgroundImage: `url(${footerBg})`,
         backgroundSize: "cover",
@@ -48,7 +48,7 @@ const Footer = () => {
           <p>New York - 101010 Hudson</p>
         </div>
       </div>
-      <div className="mt-14 p-6">
+      <div className="mt-10 p-6">
         <p className="text-center">Copyright 2022 All Rights Reserved</p>
       </div>
     </footer>
