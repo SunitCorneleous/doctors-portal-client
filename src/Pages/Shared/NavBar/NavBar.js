@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const NavBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
+
+  const logOutHandler = () => {
+    logOutUser()
+      .then(() => {
+        alert("user logged out");
+      })
+      .catch(error => console.error(error));
+  };
 
   const menuItems = (
     <React.Fragment>
@@ -24,7 +32,29 @@ const NavBar = () => {
         <Link to="/contactus">Contact Us</Link>
       </li>
       {user?.email ? (
-        <li>{user.displayName || "user"}</li>
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost">
+            <div className="w-10 ">{user?.displayName || "User"}</div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-auto"
+          >
+            <li className="my-2">
+              <p className="bg-primary font-semibold text-accent">
+                {user.email}
+              </p>
+            </li>
+            <li>
+              <button
+                onClick={logOutHandler}
+                className="btn btn-error w-full mt-2"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
       ) : (
         <li>
           <Link to="/login">Login</Link>
