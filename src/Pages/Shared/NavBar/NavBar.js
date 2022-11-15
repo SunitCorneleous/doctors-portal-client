@@ -34,7 +34,7 @@ const NavBar = () => {
       {user?.email ? (
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost">
-            <div className="w-10 ">{user?.displayName || "User"}</div>
+            <div className="w-10">{user?.displayName || "User"}</div>
           </label>
           <ul
             tabIndex={0}

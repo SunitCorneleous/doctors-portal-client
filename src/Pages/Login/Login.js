@@ -9,6 +9,7 @@ const Login = () => {
     register,
     formState: { errors },
     handleSubmit,
+    resetField,
   } = useForm();
 
   const handleLogin = data => {
@@ -17,6 +18,8 @@ const Login = () => {
         const user = result.user;
 
         console.log(user);
+        resetField("email");
+        resetField("password");
         alert("user logged in");
       })
       .catch(error => console.error(error));

@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { app } from "./../firebase/firebase.config";
 
@@ -25,7 +26,12 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // observer
+  // username
+  const updateUser = profile => {
+    return updateProfile(auth.currentUser, profile);
+  };
+
+  // auth state observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       setUser(user);
@@ -40,7 +46,7 @@ const AuthProvider = ({ children }) => {
   };
 
   // auth info
-  const authInfo = { user, createUser, loginUser, logOutUser };
+  const authInfo = { user, createUser, loginUser, updateUser, logOutUser };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
