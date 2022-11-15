@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
+  const userName = user?.displayName;
 
   const logOutHandler = () => {
     logOutUser()
@@ -25,36 +26,25 @@ const NavBar = () => {
       <li>
         <Link to="/appointment">Appointment</Link>
       </li>
-      <li>
-        <Link to="/reviews">Reviews</Link>
-      </li>
+
+      {user?.uid && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
       <li>
         <Link to="/contactus">Contact Us</Link>
       </li>
       {user?.email ? (
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost">
-            <div className="w-10">{user?.displayName || "User"}</div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-auto"
+        <li>
+          <button
+            onClick={logOutHandler}
+            className="btn btn-error rounded-md tooltip tooltip-primary tooltip-bottom"
+            data-tip={`logout ${userName.split(" ")[0]}`}
           >
-            <li className="my-2">
-              <p className="bg-primary font-semibold text-accent">
-                {user.email}
-              </p>
-            </li>
-            <li>
-              <button
-                onClick={logOutHandler}
-                className="btn btn-error w-full mt-2"
-              >
-                Logout
-              </button>
-            </li>
-          </ul>
-        </div>
+            Logout
+          </button>
+        </li>
       ) : (
         <li>
           <Link to="/login">Login</Link>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
@@ -11,6 +11,7 @@ const SignUp = () => {
     formState: { errors },
     resetField,
   } = useForm();
+  const navigate = useNavigate();
 
   const signupHandler = data => {
     createUser(data.email, data.password)
@@ -24,7 +25,10 @@ const SignUp = () => {
 
         // set username
         updateUser(profile)
-          .then(() => console.log("username added"))
+          .then(() => {
+            console.log("username added");
+            navigate("/");
+          })
           .catch(error => console.error(error));
 
         resetField("name");

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -11,6 +11,9 @@ const Login = () => {
     handleSubmit,
     resetField,
   } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = data => {
     loginUser(data.email, data.password)
@@ -21,6 +24,7 @@ const Login = () => {
         resetField("email");
         resetField("password");
         alert("user logged in");
+        navigate(from, { replace: true });
       })
       .catch(error => console.error(error));
   };
