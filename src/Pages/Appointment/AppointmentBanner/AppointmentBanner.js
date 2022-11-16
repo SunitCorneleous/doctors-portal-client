@@ -13,7 +13,15 @@ const AppointmentBanner = ({ selected, setSelected }) => {
           alt="banner"
         />
         <div className="shadow-lg rounded-xl bg-white">
-          <DayPicker mode="single" selected={selected} onSelect={setSelected} />
+          <DayPicker
+            mode="single"
+            selected={selected}
+            onSelect={data => {
+              if (data) {
+                setSelected(data);
+              }
+            }}
+          />
         </div>
       </div>
     </section>
