@@ -7,11 +7,18 @@ import Spinner from "../../Shared/Spinner/Spinner";
 
 const AvailableAppointments = ({ selected }) => {
   const [treatment, setTreatment] = useState(null);
+  const date = format(selected, "PP");
 
-  const { data: appointmentOptions, isLoading } = useQuery({
-    queryKey: ["appointmentoptions"],
+  const {
+    data: appointmentOptions,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["appointmentoptions", date],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/appointmentoptions");
+      const res = await fetch(
+        `http://localhost:5000/appointmentoptions?date=${date}`
+      );
       const data = await res.json();
       return data;
     },
@@ -41,6 +48,7 @@ const AvailableAppointments = ({ selected }) => {
           treatment={treatment}
           selectedDate={selected}
           setTreatment={setTreatment}
+          refetch={refetch}
         ></BookingModal>
       )}
     </div>
