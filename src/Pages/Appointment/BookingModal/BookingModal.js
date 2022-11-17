@@ -1,8 +1,10 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "./../../../contexts/AuthProvider";
 
 const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
   const { name, slots } = treatment;
+  const { user } = useContext(AuthContext);
 
   const handleBooking = event => {
     event.preventDefault();
@@ -23,11 +25,21 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
       email,
     };
 
-    /* 
-      TODO: send data to server and close modal
-    */
-    console.log(bookingObj);
-    setTreatment(null);
+    // create a new booking api call
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingObj),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.acknowledged) {
+          setTreatment(null);
+        }
+      })
+      .catch(error => console.error(error));
   };
 
   return (
@@ -69,17 +81,21 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
               name="name"
               placeholder="Full Name"
               className="input input-bordered w-full"
-            />
-            <input
-              type="text"
-              name="phoneNumber"
-              placeholder="Phone Number"
-              className="input input-bordered w-full"
+              defaultValue={user?.displayName}
+              disabled
             />
             <input
               type="text"
               name="email"
               placeholder="Email"
+              className="input input-bordered w-full"
+              defaultValue={user?.email}
+              disabled
+            />
+            <input
+              type="text"
+              name="phoneNumber"
+              placeholder="Phone Number"
               className="input input-bordered w-full"
             />
             <br />
