@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthProvider from "./contexts/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -15,6 +16,7 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <App />
+        <Toaster />
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -23,10 +24,10 @@ const Login = () => {
         console.log(user);
         resetField("email");
         resetField("password");
-        alert("user logged in");
+        toast.success("user logged in");
         navigate(from, { replace: true });
       })
-      .catch(error => console.error(error));
+      .catch(error => toast.error(error?.message));
   };
 
   return (

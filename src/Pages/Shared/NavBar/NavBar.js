@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
@@ -9,9 +10,9 @@ const NavBar = () => {
   const logOutHandler = () => {
     logOutUser()
       .then(() => {
-        alert("user logged out");
+        toast.success("logged out successfully");
       })
-      .catch(error => console.error(error));
+      .catch(error => toast.error(error));
   };
 
   const menuItems = (
@@ -40,7 +41,7 @@ const NavBar = () => {
           <button
             onClick={logOutHandler}
             className="btn btn-error rounded-md tooltip tooltip-primary tooltip-bottom"
-            data-tip={`logout ${userName.split(" ")[0]}`}
+            data-tip={`logout ${userName?.split(" ")[0]}`}
           >
             Logout
           </button>
