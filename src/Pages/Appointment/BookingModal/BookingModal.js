@@ -41,7 +41,7 @@ const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
           toast.success("booking successful");
         }
       })
-      .catch(error => toast.error(error));
+      .catch(error => console.error(error));
   };
 
   return (
