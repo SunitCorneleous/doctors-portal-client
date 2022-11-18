@@ -5,7 +5,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, googleLogin } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -28,6 +28,18 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch(error => console.error(error));
+  };
+
+  const googleLoginHandler = () => {
+    googleLogin()
+      .then(result => {
+        const user = result.user;
+        toast.success(`${user.displayName} logged in`);
+        navigate(from, { replace: true });
+      })
+      .catch(error => {
+        toast.error(error?.message);
+      });
   };
 
   return (
@@ -90,7 +102,10 @@ const Login = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-accent btn-outline w-full mt-4">
+        <button
+          onClick={googleLoginHandler}
+          className="btn btn-accent btn-outline w-full mt-4"
+        >
           CONTINUE WITH GOOGLE
         </button>
       </div>

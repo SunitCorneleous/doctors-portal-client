@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, googleLogin } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -36,6 +37,18 @@ const SignUp = () => {
         resetField("password");
       })
       .catch(error => console.error(error));
+  };
+
+  const googleLoginHandler = () => {
+    googleLogin()
+      .then(result => {
+        const user = result.user;
+        toast.success(`${user.displayName} logged in`);
+        navigate("/");
+      })
+      .catch(error => {
+        toast.error(error?.message);
+      });
   };
 
   return (
@@ -112,7 +125,10 @@ const SignUp = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-accent btn-outline w-full mt-4">
+        <button
+          onClick={googleLoginHandler}
+          className="btn btn-accent btn-outline w-full mt-4"
+        >
           CONTINUE WITH GOOGLE
         </button>
       </div>
