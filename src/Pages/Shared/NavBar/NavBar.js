@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { RiMenuUnfoldFill } from "react-icons/ri";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -97,20 +98,7 @@ const NavBar = () => {
           tabIndex={0}
           className="btn btn-ghost lg:hidden"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
+          <RiMenuUnfoldFill className="w-6 h-6"></RiMenuUnfoldFill>
         </label>
       </div>
     </div>
