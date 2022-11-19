@@ -19,11 +19,11 @@ const Login = () => {
   const handleLogin = data => {
     loginUser(data.email, data.password)
       .then(result => {
-        const user = result.user;
-
-        console.log(user);
+        // reset email and password field
         resetField("email");
         resetField("password");
+
+        // show succes toast
         toast.success("user logged in");
         navigate(from, { replace: true });
       })
