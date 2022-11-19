@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard/Dashboard";
+import { Link, Outlet } from "react-router-dom";
 import NavBar from "../Shared/NavBar/NavBar";
 
 const DashBoardLayout = () => {
@@ -14,16 +13,16 @@ const DashBoardLayout = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content">
-          <Dashboard></Dashboard>
+          <Outlet></Outlet>
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            <li>
-              <Link>Sidebar Item 1</Link>
+            <li className="mb-2">
+              <Link to="/dashboard">My Appointments</Link>
             </li>
             <li>
-              <Link>Sidebar Item 2</Link>
+              <Link to="/dashboard/allusers">All Users</Link>
             </li>
           </ul>
         </div>
