@@ -50,7 +50,7 @@ const SignUp = () => {
       .then(result => {
         const user = result.user;
         toast.success(`${user.displayName} logged in`);
-        navigate("/");
+        saveUser(user.displayName, user.email);
       })
       .catch(error => {
         toast.error(error?.message);
