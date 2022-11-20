@@ -37,7 +37,9 @@ const Login = () => {
 
         setLoggedInUserEmail(data.email);
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        toast.error(error.message);
+      });
   };
 
   const googleLoginHandler = () => {

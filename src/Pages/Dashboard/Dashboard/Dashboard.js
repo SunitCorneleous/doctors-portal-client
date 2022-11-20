@@ -11,13 +11,17 @@ const Dashboard = () => {
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
-      const res = await fetch(url, {
-        headers: {
-          authorization: localStorage.getItem("accessToken"),
-        },
-      });
-      const data = res.json();
-      return data;
+      try {
+        const res = await fetch(url, {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
+        const data = res.json();
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
