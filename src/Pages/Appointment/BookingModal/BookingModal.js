@@ -109,6 +109,7 @@ const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
               className="uppercase btn btn-accent"
               type="submit"
               value="submit"
+              disabled={!user}
             />
           </form>
         </div>

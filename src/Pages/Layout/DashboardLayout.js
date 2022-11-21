@@ -28,13 +28,13 @@ const DashBoardLayout = () => {
             </li>
             {isAdmin && (
               <>
-                <li>
+                <li className="mb-2">
                   <Link to="/dashboard/allusers">All Users</Link>
                 </li>
-                <li>
+                <li className="mb-2">
                   <Link to="/dashboard/adddoctor">Add a Doctor</Link>
                 </li>
-                <li>
+                <li className="mb-2">
                   <Link to="/dashboard/managedoctors">Manage Doctors</Link>
                 </li>
               </>

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "./../../Shared/Spinner/Spinner";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
 
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
@@ -17,6 +17,10 @@ const Dashboard = () => {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
           },
         });
+        if (!res.ok) {
+          logOutUser();
+          throw new Error("forbidden access");
+        }
         const data = res.json();
         return data;
       } catch (error) {
