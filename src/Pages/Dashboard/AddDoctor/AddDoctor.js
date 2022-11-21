@@ -82,7 +82,7 @@ const AddDoctor = () => {
       </h2>
       <form
         onSubmit={handleSubmit(handleAddDoctor)}
-        className="w-11/12 mx-auto lg:mx-0 lg:w-[540px] bg-white p-12 rounded-md"
+        className="w-11/12 mx-auto lg:mx-0 lg:w-[520px] bg-white p-12 rounded-md"
       >
         <div className="form-control w-full">
           <label className="label">

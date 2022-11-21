@@ -1,2 +1,5 @@
-.App {
+@media screen and (max-width: 450px) {
+  .menu-drawer {
+    background-color: #e9e7e9;
+  }
 }

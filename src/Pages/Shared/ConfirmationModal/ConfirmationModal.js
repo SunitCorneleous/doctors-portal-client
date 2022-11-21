@@ -23,7 +23,7 @@ const ConfirmationModal = ({
             </button>
             <label
               htmlFor="confirmation-modal"
-              className="btn btn-primary"
+              className="btn btn-outline btn-primary"
               onClick={() => setDeletingDoctor(null)}
             >
               cancle
