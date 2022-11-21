@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../Shared/Spinner/Spinner";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 
 const ManageDoctors = () => {
   const { data: doctors, isLoading } = useQuery({
@@ -15,10 +16,15 @@ const ManageDoctors = () => {
       return data;
     },
   });
+  const [deletingDoctor, setDeletingDoctor] = useState(null);
 
   if (isLoading) {
     return <Spinner></Spinner>;
   }
+
+  const handleDelete = doctor => {
+    console.log(doctor);
+  };
 
   return (
     <div>
@@ -57,7 +63,13 @@ const ManageDoctors = () => {
                   <td>{doctor.specialty}</td>
                   <td>{doctor.email}</td>
                   <th>
-                    <button className="btn btn-error btn-xs">delete</button>
+                    <label
+                      htmlFor="confirmation-modal"
+                      className="btn btn-error btn-xs"
+                      onClick={() => setDeletingDoctor(doctor)}
+                    >
+                      delete
+                    </label>
                   </th>
                 </tr>
               );
@@ -65,6 +77,15 @@ const ManageDoctors = () => {
           </tbody>
         </table>
       </div>
+      {deletingDoctor && (
+        <ConfirmationModal
+          title={`Are you sure you want to delete?`}
+          message={`After deleting ${deletingDoctor.name}. It can not be undone.`}
+          setDeletingDoctor={setDeletingDoctor}
+          successAction={handleDelete}
+          modalData={deletingDoctor}
+        ></ConfirmationModal>
+      )}
     </div>
   );
 };
