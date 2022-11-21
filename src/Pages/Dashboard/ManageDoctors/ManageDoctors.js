@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../Shared/Spinner/Spinner";
 import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
+import { toast } from "react-hot-toast";
 
 const ManageDoctors = () => {
-  const { data: doctors, isLoading } = useQuery({
+  const {
+    data: doctors,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/doctors", {
@@ -23,7 +28,22 @@ const ManageDoctors = () => {
   }
 
   const handleDelete = doctor => {
-    console.log(doctor);
+    fetch(`http://localhost:5000/doctors/${doctor._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.deletedCount > 0) {
+          toast.success("successfully deleted");
+          refetch();
+        }
+      })
+      .catch(error => console.error(error));
+
+    setDeletingDoctor(null);
   };
 
   return (
@@ -38,7 +58,7 @@ const ManageDoctors = () => {
               <th>Name</th>
               <th>Specialty</th>
               <th>Email</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
